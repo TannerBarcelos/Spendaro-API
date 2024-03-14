@@ -1,0 +1,38 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Executables
+*.exe
+*.out
+
+# Go binary
+/bin/
+
+# Go test binary
+*.test
+
+# Go build cache
+/.cache/
+
+# Vendor directory
+/vendor/
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# env file
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
