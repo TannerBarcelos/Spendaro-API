@@ -24,3 +24,25 @@ The "Give Every Dollar a Job" philosophy is a budgeting method that involves ass
 - PostgreSQL (Database)
 - Redis (Caching)
 - Docker (Containerization)
+
+## Installation
+
+1. Clone the repository
+
+```bash
+git clone
+```
+
+2. Install dependencies
+
+```bash
+go mod download
+```
+
+3. Edit the configuration file based on your environment
+
+4. Run the application
+
+```bash
+go run cmd/main/main.go -APP_ENV=development # by default, the application runs in development mode so you can omit the -APP_ENV flag if running in development / local environment
+```
