@@ -1,4 +1,4 @@
-name: Production Workflow
+name: Release Pipeline
 
 on:
   release:
