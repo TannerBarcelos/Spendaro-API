@@ -18,8 +18,8 @@ func BootstrapServer() {
 }
 
 func readServerFlags() (*string, *bool) {
-	appEnv := flag.String("APP_ENV", "dev", "application runtime environment")
-	debug := flag.Bool("debug", false, "sets log level to debug")
+	appEnv := flag.String("APP_ENV", "development", "application runtime environment")
+	debug := flag.Bool("debug", false, "sets log level to debug if true")
 
 	flag.Parse()
 
