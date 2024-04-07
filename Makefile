@@ -21,10 +21,10 @@ run-dev-docker:
 
 # Docker Compose
 dev-compose:
-	cd ./docker && docker-compose -f docker-compose-dev.yaml up
+	cd ./docker && docker-compose -p spendaro -f docker-compose-dev.yaml up
 
 build-dev-compose:
-	cd ./docker && docker-compose -f docker-compose-dev.yaml up --build
+	cd ./docker && docker-compose -p spendaro -f docker-compose-dev.yaml up --build
 
 # Tests
 test-verbose:
