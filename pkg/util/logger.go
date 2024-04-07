@@ -11,7 +11,7 @@ func SetupLogger(debug *bool) {
 	levelFromConfig := GetConfigString("logging.level")
 	if level, err := zerolog.ParseLevel(levelFromConfig); err != nil {
 		log.Error().Err(err).Msgf("Error parsing log level: %s", err)
-		return
+		panic(err)
 	} else {
 		zerolog.SetGlobalLevel(level)
 	}
