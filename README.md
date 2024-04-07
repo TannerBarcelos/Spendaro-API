@@ -65,3 +65,9 @@ make run-dev-docker
 make dev-compose
 
 ```
+
+## Run Tests
+
+```bash
+make test
+```
