@@ -2,7 +2,7 @@ version: '3'
 services:
   spendaro-api:
     build:
-      context: .
-      dockerfile: Dockerfile.dev
+      context: ..
+      dockerfile: ./docker/Dockerfile.dev
     ports:
       - '8080:8080'
