@@ -1,5 +1,7 @@
 # Spendaro-API
 
+[![Production Workflow](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release.yaml)
+
 ## Description
 
 This is the REST API for the Spendaro application.
