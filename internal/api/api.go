@@ -2,13 +2,15 @@ package api
 
 import (
 	"fmt"
+	"log"
+	"os"
 	v1 "spendaro-api/internal/api/v1"
 	config "spendaro-api/pkg/util"
 
 	"github.com/labstack/echo/v4"
 )
 
-// server is a struct embedding an echo web server instance
+// server is a struct embedding an echo web server instance which will embed all properties and methods of the echo web server into the server struct to be used in the server instance.
 type server struct {
 	*echo.Echo
 }
@@ -21,20 +23,29 @@ func NewEchoServer() {
 	server.startServer()
 }
 
+// startServer starts the server on the port specified in the config file.
 func (e *server) startServer() {
 	addressFromConfig := config.GetConfigString("server.port")
-	fmt.Println("Starting server on port", addressFromConfig)
+	log.Printf("Starting server on port %s", addressFromConfig)
 	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
 		e.Logger.Fatal(err)
+		os.Exit(1)
 	}
 }
 
-// registerRoutes registers all the routes for the server
+// registerRoutes registers all the routes for the server and provides a versioned API.
 func (e *server) registerRoutes() {
-	v1.RegisterRoutes(e.Group("/api"))
+	root := e.Group("/api")
+	v1.RegisterRoutes(root)
+
+	/*
+		Register future semver router versions here i.e. v2.RegisterRoutes(root), v3.RegisterRoutes(root), etc.
+		This ensures the API is backwards compatible and can be versioned.
+	*/
+
 }
 
-// registerMiddlewares registers all the middlewares for the server
+// registerMiddlewares registers all the middlewares for the server, such as logging, authentication, etc.
 func (e *server) registerMiddlewares() {
 	// Register middlewares here
 }
