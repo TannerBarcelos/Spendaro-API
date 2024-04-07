@@ -62,6 +62,6 @@ make run-dev
 make run-dev-docker
 
 # Docker Compose
-make run-dev-docker-compose
+make dev-compose
 
 ```
