@@ -21,6 +21,10 @@ func SetupLogger(debug *bool) {
 	}
 }
 
+func GetLogger() *zerolog.Logger {
+	return &log.Logger
+}
+
 /*
 panic (zerolog.PanicLevel, 5)
 fatal (zerolog.FatalLevel, 4)
