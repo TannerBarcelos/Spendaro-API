@@ -24,8 +24,9 @@ dev-compose:
 	cd ./docker && docker-compose -f docker-compose-dev.yaml up
 
 build-dev-compose:
-	cd ./docker docker-compose -f docker-compose-dev.yaml up --build
+	cd ./docker && docker-compose -f docker-compose-dev.yaml up --build
 
+# Tests
 test-verbose:
 	go test -v ./...
 
