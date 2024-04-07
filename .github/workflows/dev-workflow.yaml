@@ -19,7 +19,6 @@ jobs:
       - name: Build Docker image
         run: make build-dev-docker
 
-      # tag the built image with the latest tag
       - name: Tag Docker image
         run: docker tag spendaro-api:latest "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
 
