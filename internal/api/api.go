@@ -28,8 +28,6 @@ func NewEchoServer() {
 func (e *server) start() {
 	addressFromConfig := config.GetConfigString("server.port")
 
-	log.Log().Msgf("server started on port %s", addressFromConfig)
-
 	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
 		log.Fatal().Err(err).Msg("failed to start server")
 		os.Exit(1)
