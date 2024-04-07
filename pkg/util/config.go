@@ -7,19 +7,18 @@ import (
 
 func ReadAppConfig(appEnv *string) {
 
-	viper.SetConfigName(*appEnv)
-	viper.SetConfigType("yaml")
-	viper.AddConfigPath("config")
-	viper.AddConfigPath("../../config") // for running tests
+	viper.SetConfigName(*appEnv)        // name of config file (without extension)
+	viper.AddConfigPath("config")       // path to look for the config file in
+	viper.AddConfigPath("../../config") // path to look for the config file in (for tests)
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Error().Err(err).Msgf("Error reading config file, %s", err)
 		panic(err)
 	}
 
-	log.Log().Msgf("Config file loaded successfully using config file: %s", viper.ConfigFileUsed())
+	log.Log().Msgf("Config file loaded successfully. Using config file: %s", viper.ConfigFileUsed())
 }
 
-func GetConfigString(key string) string {
+func Read(key string) string {
 	return viper.GetString(key)
 }

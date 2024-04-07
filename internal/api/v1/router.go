@@ -1,19 +1,19 @@
 package v1
 
 import (
-	"spendaro-api/internal/api/v1/auth"
-	"spendaro-api/internal/api/v1/budget"
-	"spendaro-api/internal/api/v1/healthcheck"
+	"spendaro-api/internal/api/v1/handlers"
 
 	"github.com/labstack/echo/v4"
 )
 
+const APIVersion = "/v1"
+
 func RegisterRoutes(routeGroup *echo.Group) {
 
-	router := routeGroup.Group("/v1")
+	router := routeGroup.Group(APIVersion)
 
-	healthcheck.RegisterHealthRoutes(router)
-	auth.RegisterAuthRoutes(router)
-	budget.RegisterBudgetRoutes(router)
+	handlers.RegisterHealthRoutes(router)
+	handlers.RegisterAuthRoutes(router)
+	handlers.RegisterBudgetRoutes(router)
 
 }

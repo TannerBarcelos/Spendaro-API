@@ -16,8 +16,8 @@ type server struct {
 	*echo.Echo
 }
 
-// NewEchoServer creates a new echo web server instance and registers routes, middleware, etc. It then starts the server.
-func NewEchoServer() {
+// NewServer creates a new echo web server instance and registers routes, middleware, etc. It then starts the server.
+func NewServer() {
 	server := &server{echo.New()}
 	server.registerMiddlewares()
 	server.registerRoutes()
@@ -26,7 +26,7 @@ func NewEchoServer() {
 
 // startServer starts the server on the port specified in the config file.
 func (e *server) start() {
-	addressFromConfig := config.GetConfigString("server.port")
+	addressFromConfig := config.Read("server.port")
 
 	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
 		log.Fatal().Err(err).Msg("failed to start server")

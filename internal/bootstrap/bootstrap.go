@@ -13,7 +13,7 @@ func BootstrapServer() {
 	util.LoadEnv()
 	util.ReadAppConfig(appEnv)
 	util.SetupLogger(debug)
-	api.NewEchoServer()
+	api.NewServer()
 
 }
 

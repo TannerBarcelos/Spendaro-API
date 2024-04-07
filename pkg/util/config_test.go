@@ -15,7 +15,7 @@ func TestReadAppConfig(t *testing.T) {
 			t.Errorf("Failed to load config file")
 		}
 
-		if GetConfigString("env") != "development" {
+		if Read("env") != "development" {
 			t.Errorf("Failed to get config value")
 		}
 	})
