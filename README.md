@@ -18,12 +18,26 @@ The "Give Every Dollar a Job" philosophy is a budgeting method that involves ass
 
 > This only outlines the technologies used in the API. For the full list of technologies used in the Spendaro application, visit the [Spendaro repository](https://github.com/TannerBarcelos/Spendaro)
 
+**Core Technologies**
+
 - Go (Golang)
 - Echo (Web framework)
 - GORM (ORM)
+
+**Database**
+
 - PostgreSQL (Database)
 - Redis (Caching)
+
+**DevOps**
+
 - Docker (Containerization)
+
+**Observability**
+
+- Grafana Loki (Log aggregation - Logs generated using ZeroLog are sent to Grafana Loki)
+- Grafana Tempo (Tracing - Traces generated using OpenTelemetry are sent to Grafana Tempo)
+- Grafana Cloud (Monitoring - Metrics generated using Prometheus are sent to Grafana Cloud)
 
 ## Installation
 
