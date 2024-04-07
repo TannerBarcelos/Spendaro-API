@@ -3,8 +3,8 @@ package api
 import (
 	"fmt"
 	"os"
-	"spendaro-api/internal/api/middleware"
 	v1 "spendaro-api/internal/api/v1"
+	"spendaro-api/pkg/middleware"
 	config "spendaro-api/pkg/util"
 
 	"github.com/labstack/echo/v4"
