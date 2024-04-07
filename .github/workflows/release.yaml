@@ -19,7 +19,7 @@ jobs:
       - name: Build and Tag Docker image
         run: |
           make build-dev-docker
-          docker tag spendaro-api:${{ github.event.release.tag_name }} "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:${{ github.event.release.tag_name }}"
+          docker tag spendaro-api:${{ github.event.release.tag_name }} "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api"
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
