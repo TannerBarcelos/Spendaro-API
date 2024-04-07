@@ -52,6 +52,6 @@ func (e *server) registerRoutes() {
 
 // registerMiddlewares registers all the middlewares for the server, such as logging, authentication, etc.
 func (e *server) registerMiddlewares() {
-	e.Use(middleware.RequestLoggerMiddleware())
 	e.Use(middleware.CorsMiddleware())
+	e.Use(middleware.RequestLoggerMiddleware())
 }
