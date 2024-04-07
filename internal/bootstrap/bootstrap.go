@@ -11,8 +11,8 @@ func BootstrapServer() {
 	appEnv, debug := readServerFlags()
 
     util.SetupLogger(debug)
+    util.ReadAppConfig(appEnv)
 	util.LoadEnv()
-	util.ReadAppConfig(appEnv)
 	api.NewServer()
 
 }
