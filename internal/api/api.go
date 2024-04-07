@@ -21,18 +21,17 @@ func NewEchoServer() {
 	server := &server{echo.New()}
 	server.registerMiddlewares()
 	server.registerRoutes()
-	server.startServer()
+	server.start()
 }
 
 // startServer starts the server on the port specified in the config file.
-func (e *server) startServer() {
+func (e *server) start() {
 	addressFromConfig := config.GetConfigString("server.port")
 
 	log.Log().Msgf("server started on port %s", addressFromConfig)
-	err := e.Start(fmt.Sprintf(":%s", addressFromConfig))
 
-	if err != nil {
-		log.Error().Err(err).Msgf("Error starting server on port %s", addressFromConfig)
+	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
+		log.Fatal().Err(err).Msg("failed to start server")
 		os.Exit(1)
 	}
 
