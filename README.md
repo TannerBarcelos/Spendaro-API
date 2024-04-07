@@ -56,18 +56,12 @@ go mod download
 3. Run the application
 
 ```bash
-go run cmd/main/main.go -APP_ENV=development # by default, the application runs in development mode so you can omit the -APP_ENV flag if running in development / local environment
-```
+make run-dev
 
-> **If you want to run the application in deug mode, add the debug flag to the run command**
+# Docker
+make run-dev-docker
 
-```bash
-go run cmd/main/main.go -APP_ENV=development -debug
+# Docker Compose
+make run-dev-docker-compose
 
-# or
-
-go run cmd/main/main.go -APP_ENV=development --debug=true
-
-# You can be explicit with the debug flag by setting it to false as well
-go run cmd/main/main.go -APP_ENV=development -debug=false
 ```

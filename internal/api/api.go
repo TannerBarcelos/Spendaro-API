@@ -3,6 +3,7 @@ package api
 import (
 	"fmt"
 	"os"
+	"spendaro-api/internal/api/middleware"
 	v1 "spendaro-api/internal/api/v1"
 	config "spendaro-api/pkg/util"
 
@@ -26,9 +27,11 @@ func NewEchoServer() {
 // startServer starts the server on the port specified in the config file.
 func (e *server) startServer() {
 	addressFromConfig := config.GetConfigString("server.port")
-	log.Log().Msgf("starting server on port %s", addressFromConfig)
-	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
-		e.Logger.Fatal(err)
+
+	log.Log().Msgf("server started on port %s", addressFromConfig)
+	err := e.Start(fmt.Sprintf(":%s", addressFromConfig))
+
+	if err != nil {
 		log.Error().Err(err).Msgf("Error starting server on port %s", addressFromConfig)
 		os.Exit(1)
 	}
@@ -49,5 +52,5 @@ func (e *server) registerRoutes() {
 
 // registerMiddlewares registers all the middlewares for the server, such as logging, authentication, etc.
 func (e *server) registerMiddlewares() {
-	// Register middlewares here
+	e.Use(middleware.Cors())
 }
