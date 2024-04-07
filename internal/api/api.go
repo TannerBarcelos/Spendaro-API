@@ -2,12 +2,12 @@ package api
 
 import (
 	"fmt"
-	"log"
 	"os"
 	v1 "spendaro-api/internal/api/v1"
 	config "spendaro-api/pkg/util"
 
 	"github.com/labstack/echo/v4"
+	"github.com/rs/zerolog/log"
 )
 
 // server is a struct embedding an echo web server instance which will embed all properties and methods of the echo web server into the server struct to be used in the server instance.
@@ -26,11 +26,12 @@ func NewEchoServer() {
 // startServer starts the server on the port specified in the config file.
 func (e *server) startServer() {
 	addressFromConfig := config.GetConfigString("server.port")
-	log.Printf("Starting server on port %s", addressFromConfig)
+	log.Log().Msgf("Starting server on port %s", addressFromConfig)
 	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
 		e.Logger.Fatal(err)
 		os.Exit(1)
 	}
+
 }
 
 // registerRoutes registers all the routes for the server and provides a versioned API.
