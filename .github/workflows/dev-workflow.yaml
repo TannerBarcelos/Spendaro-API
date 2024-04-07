@@ -19,6 +19,10 @@ jobs:
       - name: Build Docker image
         run: make build-dev-docker
 
+      # tag the built image with the latest tag
+      - name: Tag Docker image
+        run: docker tag spendaro-api:latest "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
+
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
