@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api:
+  spendaro-api:
     build:
       context: .
       dockerfile: Dockerfile.dev

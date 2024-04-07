@@ -19,5 +19,9 @@ build-dev-docker:
 run-dev-docker:
 	docker run --name spendaro-api -p 8080:8080 spendaro-api
 
-# # Docker Compose
-# make run-dev-docker-compose
+# Docker Compose
+dev-compose:
+	cd ./docker && docker-compose -f docker-compose-dev.yaml up
+
+build-dev-compose:
+	cd ./docker docker-compose -f docker-compose-dev.yaml up --build
