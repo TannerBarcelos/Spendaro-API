@@ -10,13 +10,15 @@ import (
 )
 
 func RegisterBudgetRoutes(v1 *echo.Group) {
-	budgets := v1.Group("/budgets")
+	budgets := v1.Group("/budgets") // budgets resource ; /v1/budgets
 	{
-		budgets.GET("", getBudgetsHandler)          // GET /v1/budgets
-		budgets.GET("/:id", getBudgetHandler)       // GET /v1/budgets/:id
-		budgets.POST("", createBudgetHandler)       // POST /v1/budgets
-		budgets.PUT("/:id", updateBudgetHandler)    // PUT /v1/budgets/:id
-		budgets.DELETE("/:id", deleteBudgetHandler) // DELETE /v1/budgets/:id
+		budgets.GET("", getBudgetsHandler)                                         // GET /v1/budgets
+		budgets.GET("/:id", getBudgetHandler)                                      // GET /v1/budgets/:id
+		budgets.POST("/create-budget", createBudgetHandler)                        // POST /v1/budgets
+		budgets.POST("/category/create-category", createBudgetCategoryHandler)     // POST /v1/budgets/category
+		budgets.POST("/category/:id/create-item", createBudgetCategoryItemHandler) // POST /v1/budgets/item
+		budgets.PUT("/update/:id", updateBudgetHandler)                            // PUT /v1/budgets/:id
+		budgets.DELETE("/delete/:id", deleteBudgetHandler)                         // DELETE /v1/budgets/:id
 	}
 }
 
@@ -38,6 +40,37 @@ func createBudgetHandler(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusCreated, utils.PrepareResponse(data, http.StatusCreated, "Successfully created budget", nil))
+}
+
+func createBudgetCategoryHandler(c echo.Context) error {
+	data, err := services.CreateBudgetCategory()
+
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, utils.PrepareResponse(nil, http.StatusInternalServerError, "Failed to create budget category", err))
+	}
+
+	return c.JSON(http.StatusCreated, utils.PrepareResponse(data, http.StatusCreated, "Successfully created budget category", nil))
+}
+
+func createBudgetCategoryItemHandler(c echo.Context) error {
+
+	categoryId := c.Param("id")
+
+	if categoryId == "" {
+		return c.JSON(http.StatusBadRequest, utils.PrepareResponse(nil, http.StatusBadRequest, "Invalid category ID", nil))
+	}
+
+	data, err := services.CreateBudgetCategoryItem(categoryId)
+
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, utils.PrepareResponse(nil, http.StatusInternalServerError, "Failed to create budget category item", err))
+	}
+
+	if data == "" {
+		return c.JSON(http.StatusNotFound, utils.PrepareResponse(nil, http.StatusNotFound, "Category not found", nil))
+	}
+
+	return c.JSON(http.StatusCreated, utils.PrepareResponse(data, http.StatusCreated, "Successfully created budget category item", nil))
 }
 
 func getBudgetHandler(c echo.Context) error {
