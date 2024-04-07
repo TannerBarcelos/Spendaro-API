@@ -3,7 +3,7 @@ name: Development Pipeline
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build-and-deploy:
@@ -19,10 +19,10 @@ jobs:
       - name: Build and Tag Docker image
         run: |
           make build-dev-docker
-          docker tag spendaro-api:dev "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:dev"
+          docker tag spendaro-api:latest "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Push Docker image to Docker Hub
-        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:dev"
+        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
