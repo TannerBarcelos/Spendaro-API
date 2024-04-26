@@ -6,14 +6,12 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-const APIVersion = "/v1"
-
 func RegisterRoutes(routeGroup *echo.Group) {
 
-	router := routeGroup.Group(APIVersion)
+	v1Router := routeGroup.Group("/v1")
 
-	handlers.RegisterHealthRoutes(router)
-	handlers.RegisterAuthRoutes(router)
-	handlers.RegisterBudgetRoutes(router)
+	handlers.RegisterHealthRoutes(v1Router)
+	handlers.RegisterAuthRoutes(v1Router)
+	handlers.RegisterBudgetRoutes(v1Router)
 
 }

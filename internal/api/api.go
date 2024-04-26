@@ -11,22 +11,22 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-// server is a struct embedding an echo web server instance which will embed all properties and methods of the echo web server into the server struct to be used in the server instance.
 type server struct {
 	*echo.Echo
 }
 
-// NewServer creates a new echo web server instance and registers routes, middleware, etc. It then starts the server.
-func NewServer() {
-	server := &server{echo.New()}
+func RunServer() {
+	server := &server{
+		echo.New(),
+	}
 	server.registerMiddlewares()
 	server.registerRoutes()
-	server.start()
+	server.startServer()
 }
 
 // startServer starts the server on the port specified in the config file.
-func (e *server) start() {
-	addressFromConfig := config.Read("server.port")
+func (e *server) startServer() {
+	addressFromConfig := config.ReadConfigValue("server.port")
 
 	if err := e.Start(fmt.Sprintf(":%s", addressFromConfig)); err != nil {
 		log.Fatal().Err(err).Msg("failed to start server")
@@ -37,8 +37,7 @@ func (e *server) start() {
 
 // registerRoutes registers all the routes for the server and provides a versioned API.
 func (e *server) registerRoutes() {
-	root := e.Group("/api")
-	v1.RegisterRoutes(root)
+	v1.RegisterRoutes(e.Group("/api"))
 
 	/*
 		Register future semver router versions here i.e. v2.RegisterRoutes(root), v3.RegisterRoutes(root), etc.
