@@ -8,7 +8,7 @@ import (
 func SetupLogger(debug *bool) {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
 
-	levelFromConfig := Read("logging.level")
+	levelFromConfig := ReadConfigValue("logging.level")
 
 	if level, err := zerolog.ParseLevel(levelFromConfig); err != nil {
 		log.Error().Err(err).Msgf("Error parsing log level: %s", err)

@@ -19,6 +19,7 @@ func ReadAppConfig(appEnv *string) {
 	log.Log().Msgf("Config file loaded successfully. Using config file: %s", viper.ConfigFileUsed())
 }
 
-func Read(key string) string {
+// ReadConfigValue reads a value from the config file if it exists, otherwise returns an empty string
+func ReadConfigValue(key string) string {
 	return viper.GetString(key)
 }

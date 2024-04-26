@@ -1,9 +1,9 @@
 package main
 
 import (
-	"spendaro-api/internal/bootstrap"
+	"spendaro-api/internal/api"
 )
 
 func main() {
-	bootstrap.BootstrapServer()
+	api.BootstrapAndRunServer()
 }
