@@ -32,7 +32,7 @@ The "Give Every Dollar a Job" philosophy is a budgeting method that involves ass
 
 **Database**
 
-- PostgreSQL (Database)
+- MySQL (Database)
 - Redis (Caching)
 
 **DevOps**
