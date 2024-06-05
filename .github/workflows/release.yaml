@@ -3,7 +3,7 @@ name: Release Pipeline
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
   build-and-upload:
