@@ -10,4 +10,4 @@ COPY . .
 
 RUN go build -o spendaro-api cmd/main/main.go
 
-CMD ["./spendaro-api", "-APP_ENV=development", "-debug=false"]
+CMD ["./spendaro-api", "-APP_ENV=development", "-DEBUG=false"]
