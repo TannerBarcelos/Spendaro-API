@@ -29,6 +29,9 @@ jobs:
 
       - name: Merge release branch into main to keep main up-to-date with each release
         run: |
+          git config --global user.email "${{ secrets.REPO_OWNER_EMAIL }}"
+          git config --global user.name "${{ secrets.REPO_OWNER_USERNAME }}"
+          git fetch origin
           git checkout main
           git merge "${{ github.event.release.tag_name }}"
           git push origin main
