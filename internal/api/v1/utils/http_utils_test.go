@@ -3,7 +3,6 @@ package utils
 import (
 	"errors"
 	"net/http"
-	"spendaro-api/internal/api/v1/models"
 	"testing"
 )
 
@@ -13,7 +12,7 @@ func TestPrepareResponse(t *testing.T) {
 		data := "some data"
 		status := http.StatusOK
 		message := "message"
-		want := models.CommonResponsePayload{
+		want := CommonResponsePayload{
 			Data:    data,
 			Status:  status,
 			Message: message,
@@ -30,7 +29,7 @@ func TestPrepareResponse(t *testing.T) {
 		status := http.StatusOK
 		message := "message"
 		err := errors.New("error")
-		want := models.CommonResponsePayload{
+		want := CommonResponsePayload{
 			Data:    data,
 			Status:  status,
 			Message: message,

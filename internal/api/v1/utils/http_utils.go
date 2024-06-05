@@ -1,9 +1,7 @@
 package utils
 
-import "spendaro-api/internal/api/v1/models"
-
-func PrepareResponse(data interface{}, status int, message string, err error) models.CommonResponsePayload {
-	return models.CommonResponsePayload{
+func PrepareResponse(data interface{}, status int, message string, err error) CommonResponsePayload {
+	return CommonResponsePayload{
 		Data:    data,
 		Status:  status,
 		Message: message,

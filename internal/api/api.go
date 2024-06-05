@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	v1 "spendaro-api/internal/api/v1"
+	"spendaro-api/internal/api/v1/handlers"
 	"spendaro-api/pkg/middleware"
 	config "spendaro-api/pkg/util"
 
@@ -37,13 +38,10 @@ func (e *server) startServer() {
 
 // registerRoutes registers all the routes for the server and provides a versioned API.
 func (e *server) registerRoutes() {
+	handlers.RegisterHealthRoutes(e.Group("/healthcheck"))
 	v1.RegisterRoutes(e.Group("/api"))
 
-	/*
-		Register future semver router versions here i.e. v2.RegisterRoutes(root), v3.RegisterRoutes(root), etc.
-		This ensures the API is backwards compatible and can be versioned.
-	*/
-
+	// v2.RegisterRoutes(e.Group("/api/v2")), etc.
 }
 
 // registerMiddlewares registers all the middlewares for the server, such as logging, authentication, etc.

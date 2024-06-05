@@ -7,13 +7,12 @@ import (
 
 func BootstrapAndRunServer() {
 
-	// Parse command line flags
-	appEnv := flag.String("APP_ENV", "development", "application runtime environment")
-	debug := flag.Bool("debug", false, "sets log level to debug if true")
+	env := flag.String("APP_ENV", "development", "application runtime environment")
+	debug := flag.Bool("DEBUG", false, "sets log level to debug if true")
 	flag.Parse()
 
 	util.LoadEnv()
-	util.ReadAppConfig(appEnv)
+	util.ReadAppConfig(env)
 	util.SetupLogger(debug)
 
 	RunServer()

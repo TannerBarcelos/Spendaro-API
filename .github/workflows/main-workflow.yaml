@@ -3,7 +3,7 @@ name: Main Pipeline
 on:
   push:
     branches:
-      - main
+      - 'main'
 
 jobs:
   build-and-deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Run tests
         run: make test
 
-      - name: Build and Tag Docker image
+      - name: Build and Tag Docker image as latest
         run: |
           make build-dev-docker
           docker tag spendaro-api "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
@@ -24,5 +24,11 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
 
-      - name: Push Docker image to Docker Hub
-        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest"
+      - name: Push latest Docker image to Docker Hub for production deployment
+        run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:latest" # latest tag is used for the main branch - this is used to deploy the application to production
+
+
+      # - name: Deploy to production
+      #   run: |
+      #     kubectl apply -f k8s/production
+      #     kubectl rollout restart deployment spendaro-api

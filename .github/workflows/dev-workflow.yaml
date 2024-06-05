@@ -3,7 +3,9 @@ name: Development Pipeline
 on:
   push:
     branches:
-      - develop
+      - 'feature/*'
+      - 'bugfix/*'
+      - 'hotfix/*'
 
 jobs:
   build-and-deploy:
