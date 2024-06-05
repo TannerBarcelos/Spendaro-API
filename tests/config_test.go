@@ -4,18 +4,20 @@ import (
 	"testing"
 
 	"github.com/spf13/viper"
+
+	"spendaro-api/pkg/util"
 )
 
 func TestReadAppConfig(t *testing.T) {
 	t.Run("Reads_Config", func(t *testing.T) {
 		appEnv := "development"
-		ReadAppConfig(&appEnv)
+		util.ReadAppConfig(&appEnv)
 
 		if viper.ConfigFileUsed() == "" {
 			t.Errorf("Failed to load config file")
 		}
 
-		if ReadConfigValue("env") != "development" {
+		if util.ReadConfigValue("env") != "development" {
 			t.Errorf("Failed to get config value")
 		}
 	})
@@ -30,6 +32,6 @@ func TestReadAppConfig(t *testing.T) {
 			}
 		}()
 
-		ReadAppConfig(&appEnv)
+		util.ReadAppConfig(&appEnv)
 	})
 }

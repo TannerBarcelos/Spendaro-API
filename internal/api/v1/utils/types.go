@@ -1,4 +1,4 @@
-package models
+package utils
 
 type CommonResponsePayload struct {
 	Data    interface{} `json:"data"`

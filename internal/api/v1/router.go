@@ -10,7 +10,6 @@ func RegisterRoutes(routeGroup *echo.Group) {
 
 	v1Router := routeGroup.Group("/v1")
 
-	handlers.RegisterHealthRoutes(v1Router)
 	handlers.RegisterAuthRoutes(v1Router)
 	handlers.RegisterBudgetRoutes(v1Router)
 

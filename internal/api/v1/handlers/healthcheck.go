@@ -6,11 +6,9 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func RegisterHealthRoutes(v1 *echo.Group) {
-	healthcheck := v1.Group("/healthcheck")
-	{
-		healthcheck.GET("", healthcheckHandler) // GET /v1/healthcheck
-	}
+func RegisterHealthRoutes(baseRouter *echo.Group) {
+	baseRouter.GET("", healthcheckHandler)
+
 }
 
 func healthcheckHandler(c echo.Context) error {

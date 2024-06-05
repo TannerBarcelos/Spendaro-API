@@ -14,7 +14,7 @@ func RegisterBudgetRoutes(v1 *echo.Group) {
 	{
 		budgets.GET("", getBudgetsHandler)                                         // GET /v1/budgets
 		budgets.GET("/:id", getBudgetHandler)                                      // GET /v1/budgets/:id
-		budgets.POST("/create-budget", createBudgetHandler)                        // POST /v1/budgets
+		budgets.POST("/create", createBudgetHandler)                               // POST /v1/budgets/create
 		budgets.POST("/category/create-category", createBudgetCategoryHandler)     // POST /v1/budgets/category
 		budgets.POST("/category/:id/create-item", createBudgetCategoryItemHandler) // POST /v1/budgets/item
 		budgets.PUT("/update/:id", updateBudgetHandler)                            // PUT /v1/budgets/:id
