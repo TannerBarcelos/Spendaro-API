@@ -5,6 +5,9 @@ on:
     types:
       - published
 
+permissions:
+  contents: write
+
 jobs:
   build-and-upload:
     runs-on: ubuntu-latest
@@ -31,6 +34,8 @@ jobs:
         run: docker push "${{ secrets.DOCKERHUB_USERNAME }}/spendaro-api:${{ github.event.release.tag_name }}"
 
       - name: Merge release branch into main to keep main up-to-date with each release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "${{ secrets.REPO_OWNER_EMAIL }}"
           git config --global user.name "${{ secrets.REPO_OWNER_USERNAME }}"
