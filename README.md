@@ -4,7 +4,7 @@
 
 [![Main Pipeline](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/main-workflow.yaml/badge.svg?branch=main)](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/main-workflow.yaml)
 
-[![Production Workflow](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release.yaml)
+[![Production Workflow](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release-workflow.yaml/badge.svg?branch=main)](https://github.com/TannerBarcelos/Spendaro-API/actions/workflows/release.yaml)
 
 ## Description
 
